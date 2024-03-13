@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block index %}
+{% load static %} 
+{% load i18n widget_tweaks %}
+<main>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+
+			<p>Please logout and try logging in from a different account since you are not authorized to access this page using your account.</p>
+
+
+			<p><a class="btn btn-warning btn-sm" href="{% url 'logout' %}">Logout</a></p>
+
+				
+
+		</div>
+	</div>
+</div>
+</main>
+{% endblock %}

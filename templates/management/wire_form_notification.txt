@@ -1,0 +1,10 @@
+Wire request submission
+
+Hi {{ user }}
+Thank you for your wire submission.
+We will process your request to  as soon as possible.
+Please note that you can check your request on your Prevoius transfer lists
+
+
+Tru Treasury
+

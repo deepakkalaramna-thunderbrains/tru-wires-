@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block index %} 
+{% load i18n widget_tweaks %}
+  <main>
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      {% include 'management/tick.html' %}
+        <h5>Your Wire request has been successfully submitted!</h5>
+         <h5>To see all the previous wire records  <a href="{% url 'wire_requests' %}">Click here</a> </h5>
+    </div>
+  </main>
+{% endblock %}

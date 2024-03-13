@@ -1,0 +1,240 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block index %}
+{% load static %} 
+{% load i18n widget_tweaks %}
+{{form.media}} 
+
+<main>
+        <form style="margin: 0px;"  method="POST" action="{% url 'submit_form'%}">
+            {% csrf_token %}
+        <div class="form_table">
+            <div class="wrapper">
+                <div class="row mb-3">
+                    <div class="col-md-auto col-12 form_label required_label mx-5">
+                        {{ form.destination.0 }}
+                    </div>
+                    <div class="col-md-auto col-12 form_label required_label ">
+                          {{ form.destination.1 }}
+                    </div>
+                    <div class="col-md-auto col-12 form_label required_label mx-auto order-0" id="currency_select_feild" >
+                        <select name="currency" class="form-select form-select-sm" id="select_currency_feild" aria-label="Default select example" onchange="diplayCurrencyFeild(this);">
+                            <option value="---------" selected>Select Currency</option>
+                            {% for USD,USA_Dollar in form.fields.currency.choices %}
+                                <option id="{{ USD }}" value="{{ USD }}">{{ USA_Dollar }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-auto col-12 form_label required_label mx-auto order-0">
+                        <label for="myCheck">Reccuring:</label> 
+                        <input type="checkbox" id="reccuringCheck" onclick="reccuringFunction()">
+                    </div>
+                    <div class="col-md-auto col-12">
+                         <div class="col" style="display:none" id="reccuringFeild">
+                                {{ form.media }}
+                                {{ form.recurrent }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="form_section">
+                <div class="row_header row_data field01">
+                    <input type="hidden" value="">
+                    <h2 style="background: rgb(114, 143, 206); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><span style="color:#FFFFFF;">Sending Details</span></h2>
+                </div>
+                <!-- Wire Type Section -->
+                <div class="form_label required_label field02">
+                    {{ form.destination.0 }}
+                </div>
+                <div class="form_label required_label field03">
+                    {{ form.destination.1 }}
+                </div>
+                <div class="field04" id="currency_select_feild">
+                    <select name="currency" class="form-select form-select-sm" id="select_currency_feild" aria-label="Default select example" onchange="diplayCurrencyFeild(this);">
+                        <option value="---------" selected>Select Currency</option>
+                        {% for USD,USA_Dollar in form.fields.currency.choices %}
+                            <option id="{{ USD }}" value="{{ USD }}">{{ USA_Dollar }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form_label required_label field05">
+                    <label for="myCheck">Reccuring:</label> 
+                    <input type="checkbox" id="reccuringCheck" onclick="reccuringFunction()">
+                    <div class="col" style="display:none" id="reccuringFeild">
+                            {{ form.media }}
+                            {{ form.recurrent }}
+                    </div>
+                </div>
+                <!-- Sending Section -->
+                <div class="row_header row_data field1">
+                    <input type="hidden" value="">
+                    <h2 style="background: rgb(114, 143, 206); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><span style="color:#FFFFFF;">Sending Details</span></h2>
+                </div>
+                <div class="form_label required_label field2"><label>Sending Account Number<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field3">
+                    {{ form.sending_account_number|attr:"class:form-select form-select-sm input_field"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field4">
+                    <label>Sending Account Type<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field5">
+                    {{ form.sending_account_type|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field6 ">
+                    <label>Amount<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field7 ">
+                    {{ form.sending_amount|attr:"class:input_field"|attr:"size:25"|attr:"type:number" }}
+                </div>
+                <div class="form_label required_label field8 ">
+                    <label>Effective Date<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field9 flatpickr-input ">
+                    {{ form.effective_date|attr:"class:input_field"|attr:"size:25"|attr:"type:date" }}
+                    </div>
+
+					<!-- Recieving Section -->
+                   	<div class="row_header row_data field10">
+                        <input type="hidden" value="">
+                        <h2 style="background: rgb(114, 143, 206); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+							<span style="color:#FFFFFF;">Recipient Details</span></h2>
+                </div>
+                <div class="form_label required_label field11"><label>Recipient Name<span class="asterisk">*</   span></label>
+                </div>
+                <div class="form_input field12">
+                     {{ form.recipient_name|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field13">
+                    <label>Recipient Account Type<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field14">
+                     {{ form.recipient_account_type|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field15 ">
+                    <label>Recipient Account Number<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field16 ">
+                     {{ form.recipient_account_number|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field17">
+                    <label>Recipient Routing Number<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field18 ">
+                     {{ form.recipient_routing_number|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                    </div>
+                   <!-- Recieving Bank Section -->
+                   	<div class="row_header row_data field19">
+                        <input type="hidden" value="">
+                        <h2 style="background: rgb(114, 143, 206); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+							<span style="color:#FFFFFF;">Recieving Bank</span></h2>
+                </div>
+                <div class="form_label required_label field20"><label>Bank Name<span class="asterisk">*</   span></label>
+                </div>
+                <div class="form_input field21">
+                     {{ form.receiving_bank_name|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                   
+                </div>
+                <div class="form_label required_label field22">
+                    <label>Street Address<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field23">
+                     {{ form.receiving_street_address|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field24 ">
+                    <label>State<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field25 ">
+                     {{ form.receiving_bank_state|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field26">
+                    <label>Zip Code<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field27 flatpickr-input ">
+                     {{ form.receiving_bank_zipcode|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                   
+                    </div>
+					 <!-- Intermediary Section -->
+                <div class="row_header row_data field28">
+                    <input type="hidden" value="">
+                    <h2 style="background: rgb(114, 143, 206); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+						<span style="color:#FFFFFF;">Intermediary Bank</span></h2>
+                </div>
+                <span id="hidden" style="display:none;">Require</span>
+                <div class="form_label required_label field29">
+                    <label>Bank Name</label>
+                     <span  for="{{ form.intermediary_bank_name.id_for_label }}"> </span>
+                    
+                </div>
+                <div class="form_input field30">
+                    {{ form.intermediary_bank_name|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field31">
+                    <label>Street Address <span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field32">
+                    {{ form.intermediary_bank_st_adress|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field33 ">
+                    <label>Country <span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field34">
+                    {{ form.intermediary_bank_country|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field35">
+                    <label>Postal Code<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field36 flatpickr-input ">
+                        {{ form.intermediary_bank_post_code|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                    </div>
+                    <div class="form_label required_label field37 ">
+                        <label >SWIFT<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field38">
+                    {{ form.intermediary_bank_swift|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                </div>
+                <div class="form_label required_label field39">
+                    <label>IBAN<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field40 flatpickr-input ">
+                   {{ form.intermediary_bank_iban|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                    </div>
+					 <!-- Additional Section -->
+                   	<div class="row_header row_data field41">
+                        <input type="hidden" value="">
+                        <h2 style="background: rgb(114, 143, 206); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+							<span style="color:#FFFFFF;">Additonal Details</span></h2>
+                </div>
+                <div class="form_label required_label field42">
+                    <div class="form_label required_label">
+                        <label ></label>
+                    </div>
+                    <div class="cbFormFieldCell">
+                        <span class="cbFormData"><a href="https://sanctionssearch.ofac.treas.gov/" target="_blank" class="cbFormDataLink">OFAC Check</a></span>
+                    </div>
+                </div>
+                <div class="form_label required_label field43">
+                    <div class="form_label required_label">
+                        <label for="InsertRecordPurpose_Of_Wire">Purpose Of Wire<span class="asterisk">*</span></label>
+                    </div>
+                    <div class="cbFormFieldCell">
+                        {{ form.purpose_of_wire|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                    </div>
+                </div>
+                <div class="form_label required_label field44">
+                    <div class="form_label cbFormLabel">
+                        <label for="InsertRecordDescription">Description</label>
+                    </div>
+                    <div class="cbFormFieldCell">
+                         {{ form.description|attr:"class:input_field"|attr:"size:25"|attr:"type:text" }}
+                    </div>
+                </div>
+            </section>
+            <button  type="submit" value="submit" class="mx-auto order-0">Submit</button>
+            {% trans "Submit" as the_btn_label %}
+        </div>
+          {{ form.media }}
+             {{ form.recurrent_recurrence.rrules }}
+    </form>
+</main>
+{% endblock %}

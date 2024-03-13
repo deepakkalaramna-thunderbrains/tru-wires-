@@ -1,0 +1,626 @@
+.form_table {
+    display: table;
+}
+
+.data_table {}
+
+
+
+.wrapper {
+    display: block;
+    margin-left: 2vw;
+    margin-right: 6vw;
+}
+
+.ibank {
+    display: none;
+}
+
+.form_section {
+    display: inline-grid;
+    background: #FFFFFF;
+    margin: 0px;
+    width: 100%;
+}
+.auth-button-container{
+    display: flex ;
+    flex-direction: row;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.row_header {
+    background: #FFFFFF;
+    color: #20282B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 7px 15px 0px 15px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.row_data {
+    color: #20282B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px !important;
+    font-weight: 400;
+}
+
+.row_data h2,
+h2 {
+    color: #20282B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0px;
+    padding: 10px 0px 5px 0px;
+}
+
+.required_label {
+    color: #333333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form_label {
+    padding: 14px 15px 0px 15px;
+    text-align: left;
+    vertical-align: top;
+    white-space: normal;
+    width: auto;
+}
+
+.form_input {
+    padding: 7px 15px 7px 15px;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.cbFormNestedTableContainer {
+    padding: 0px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.input_field,
+.input-control {
+    -moz-border-radius: 3px;
+    -moz-box-sizing: border-box;
+    -webkit-border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    background: #FFFFFF;
+    border-color: #ACB7BB;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    color: #20282B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 8px;
+}
+
+.field01 {
+    grid-row: 0;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+.field02 {
+    grid-row: 1;
+    grid-column: 1 / span 6;
+    grid-auto-columns: unset;
+}
+
+.field03 {
+    grid-row: 1;
+    grid-column: 7 / span 6;
+    grid-auto-columns: unset;
+}
+
+.field04 {
+    grid-row: 1;
+    grid-column: 13 / span 6;
+    grid-auto-columns: unset;
+}
+
+.field05 {
+    grid-row: 1;
+    grid-column: 19 / span 6;
+    grid-auto-columns: unset;
+}
+
+.field06 {
+    grid-row: 1;
+    grid-column: 22 / span 6;
+    grid-auto-columns: unset;
+}
+
+.field1 {
+    grid-row: 2;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+.field_new_2 {
+    grid-row: 3;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_3 {
+    grid-row: 3;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_14 {
+    grid-row: 3;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_15 {
+    grid-row: 3;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_16 {
+    grid-row: 3;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_17 {
+    grid-row: 3;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_18 {
+    grid-row: 3;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field_new_19 {
+    grid-row: 3;
+    grid-column: 22 / span 3;
+    grid-auto-columns: unset;
+}
+
+
+.field2 {
+    grid-row: 4;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field3 {
+    grid-row: 4;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field4 {
+    grid-row: 4;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field5 {
+    grid-row: 4;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field6 {
+    grid-row: 4;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field7 {
+    grid-row: 4;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field8 {
+    grid-row: 4;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field9 {
+    grid-row: 4;
+    grid-column: 22 / span 1 !important;
+    grid-auto-columns: unset;
+}
+
+.field9a {
+    grid-row: 5;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field9b {
+    grid-row: 5;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+
+.field10 {
+    grid-row: 6;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+.field11 {
+    grid-row: 7;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field12 {
+    grid-row: 7;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field13 {
+    grid-row: 7;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field14 {
+    grid-row: 7;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field15 {
+    grid-row: 7;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field16 {
+    grid-row: 7;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field17 {
+    grid-row: 7;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field18 {
+    grid-row: 7;
+    grid-column: 22 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field11a {
+    grid-row: 8;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field12a {
+    grid-row: 8;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field13a {
+    grid-row: 8;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field14a {
+    grid-row: 8;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field15a {
+    grid-row: 8;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field16a {
+    grid-row: 8;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field17a {
+    grid-row: 8;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field18a {
+    grid-row: 8;
+    grid-column: 22 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field19 {
+    grid-row: 9;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+.field20 {
+    grid-row: 10;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field21 {
+    grid-row: 10;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field22 {
+    grid-row: 10;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field23 {
+    grid-row: 10;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field24 {
+    grid-row: 10;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field25 {
+    grid-row: 10;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+
+.field26a {
+    grid-row: 10;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field27a {
+    grid-row: 10;
+    grid-column: 22 / span 3;
+    grid-auto-columns: auto;
+}
+
+
+.field26b {
+    grid-row: 11;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field27b {
+    grid-row: 11;
+    grid-column: 4 / span 3;
+    grid-auto-columns: auto;
+}
+
+
+.field28 {
+    grid-row: 12;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+.field29 {
+    grid-row: 13;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field30 {
+    grid-row: 13;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field31 {
+    grid-row: 13;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field32 {
+    grid-row: 13;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field33 {
+    grid-row: 13;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field34 {
+    grid-row: 13;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field34a {
+    grid-row: 13;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field34b {
+    grid-row: 13;
+    grid-column: 22 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field35 {
+    grid-row: 14;
+    grid-column: 1 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field36 {
+    grid-row: 14;
+    grid-column: 4 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field37 {
+    grid-row: 14;
+    grid-column: 7 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field37a {
+    grid-row: 14;
+    grid-column: 10 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field38 {
+    grid-row: 14;
+    grid-column: 13 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field38a {
+    grid-row: 14;
+    grid-column: 16 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field39 {
+    grid-row: 14;
+    grid-column: 19 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field40 {
+    grid-row: 14;
+    grid-column: 22 / span 3;
+    grid-auto-columns: unset;
+}
+
+.field41 {
+    grid-row: 15;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+.field42 {
+    grid-row: 16;
+    grid-column: 1 / span 8;
+    grid-auto-columns: unset;
+}
+
+.field43 {
+    grid-row: 16;
+    grid-column: 9 / span 8;
+    grid-auto-columns: unset;
+}
+
+.field44 {
+    grid-row: 16;
+    grid-column: 17 / span 8;
+    grid-auto-columns: unset;
+}
+
+.field45 {
+    grid-row: 16;
+    grid-column: 17 / span 8;
+    grid-auto-columns: unset;
+}
+
+.field46 {
+    grid-row: 17;
+    grid-column: 1 / span 24;
+    grid-auto-columns: unset;
+}
+
+@media only screen and (max-width: 975px) {
+    .form_table {
+        display: block !important;
+    }
+    .data_table {
+        display: block !important;
+    }
+    .form_section {
+        margin-left: 15% !important;
+        width: 70% !important;
+        margin-right: 15% !important;
+        box-sizing: border-box;
+        display: block;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .required_label {
+        font-size: 17px;
+    }
+    .form_input input {
+        font-size: 17px;
+        width: 90% !important;
+    }
+}
+.print-only{
+    visibility: hidden;
+}
+@media print {
+    .no-print{
+      display:none;
+    }
+
+    .print-only{
+        display: flex;
+        flex-direction: row;
+        visibility: unset;
+    }
+    
+    .label{
+        font-weight: unset;
+    }
+
+    .field43 {
+        grid-row: 16;
+        grid-column: 1 / span 8;
+        grid-auto-columns: unset;
+    }
+    
+    .field44 {
+        grid-row: 16;
+        grid-column: 9 / span 8;
+        grid-auto-columns: unset;
+    }
+    
+  }

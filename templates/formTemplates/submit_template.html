@@ -1,0 +1,359 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block index %}
+{% load static %} 
+{% load i18n widget_tweaks %}
+
+<main>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+      <h4>Submitting Template <span>{{ object.name }}</span></h4>
+      </div>
+      <div class="d-flex justify-content-center">
+      <h5>Please make sure all the form details are correct as this action cannot be undone!</h5>
+      </div>
+    </div>
+        <form style="margin: 0px;" id="wire_table_form" method="POST" action="{% url 'submit_cloned_form' %}">
+            {% csrf_token %}
+        <div class="form_table">
+           <!-- Wire Type Section -->
+            <div class="wrapper">
+                <div class="row mb-3">
+                    <div class="col-md-auto col-12 form_label required_label mx-auto order-0" id="selected_destination">
+                        <select name="destination" class="form-select input-control" aria-label="Default select example">
+                            <option id="selected_{{ object.destination }}"  value="{{ object.destination }}" selected="selected">{{ object.destination }}</option>
+                            {% comment %} {% for Domestic,International in form.fields.destination.choices %}
+                            <option id="{{ Domestic }}" value="{{ Domestic }}">{{ International }}</option>             
+                            {% endfor %} {% endcomment %}
+                          </select>
+                    </div>
+                    <div class="col-md-auto col-12 form_label required_label mx-auto order-1" id="selected_currency_feild">
+                    <div class="col-md-auto col-6" id="selected_destination">
+                        <select name="currency" id="selected_value_feild" class="form-select input-control"  aria-label="Default select example">
+                             <option value={{ object.currency }} selected>{{ object.currency }}</option>
+                              {% comment %} {% for USD,USA_Dollar in form.fields.currency.choices %}
+                              <option id="{{ USD }}" value="{{ USD }}">{{ USA_Dollar }}</option>
+                              {% endfor %} {% endcomment %}
+                        </select>
+                      </div>
+                  </div>
+
+                </div>
+            </div>
+
+            <section class="form_section">
+                <!-- Sending Section -->
+                <div class="row_header row_data field1">
+                    <input type="hidden" value="">
+                    <h2 style="background: {{ cunion.form_color }}; border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"><span style="color:#FFFFFF;">Sending Details</span></h2>
+                </div>
+
+                <div class="form_label required_label field_new_2"><label>Business Name<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field_new_3 ">
+                    <input class="input_field" size="25" name="sending_businessname"  value="{{ object.sending_businessname }}" >
+                </div>
+
+                <div class="form_label required_label field_new_14"><label>Business Address<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field_new_15 ">
+                    <input class="input_field" size="25" name="sending_street_address"  value="{{ object.sending_street_address }}" >
+                </div>
+
+                <div class="form_label required_label field_new_16"><label>Business City<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field_new_17">
+                    <input class="input_field" size="25" name="sending_city"  value="{{ object.sending_city }}" >
+                </div>
+
+                <div class="form_label required_label field_new_18"><label>Business State<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field_new_19">
+                    <select name="sending_state" class="form-select form-select-sm input_field" required="" id="id_sending_state">
+                        <option value="{{ object.sending_state }}" style="font-weight: bold"> Select State</option>
+                        {% for option in form.fields.sending_state.choices %}
+                          {% if option.0 != object.sending_state %}
+                            <option value="{{ option.0 }}" >{{ option.1 }}</option>
+                          {% else %}
+                            <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                </div>
+
+                <div class="form_label required_label field2"><label>Business Zip<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field3">
+                    <input class="input_field" size="25" name="sending_zipcode"  value="{{ object.sending_zipcode }}" >
+                </div>
+                
+                <div class="form_label required_label field4">
+                    <label>Sending Account Number <span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field5">
+              
+                    <select name="sending_account_number" class="form-select form-select-sm input_field" required="" id="id_sending_account_number">
+                        {% for option in form.fields.sending_account_number.choices %}
+                          {% if option.0 != object.sending_account_number_id %}
+                            <option value="{{ option.0.value }}" >{{ option.1 }}</option>
+                          {% else %}
+                            <option value="{{ option.0.value }}" selected>{{ option.1 }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select> 
+                </div>
+                <div class="form_label required_label field6 ">
+                    <label>Sending Account Type<span class="asterisk ">*</span></label>
+                </div>
+
+                <div class="form_input field7 ">
+                    <input class="input_field" size="25" name="sending_account_type"  value="{{ object.sending_account_type }}" >
+                
+                </div>
+
+                <div class="form_label required_label field8 ">
+                    <label>Amount<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input flatpickr-input field9">
+                    <input class="input_field" size="25" name="sending_amount"  value="{{ object.sending_amount }}" >
+                </div>
+                
+                <div class="form_label required_label field9a ">
+                    <label>Effective Date<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input flatpickr-input field9b ">
+                    <input type="date" name="effective_date" size="25" class="input_field min-today" value="{{ object.effective_date }}" required>
+                </div> 
+
+                    <!-- Receiving Section -->
+                    <div class="row_header row_data field10">
+                        <input type="hidden" value="">
+                        <h2 style="background: {{ cunion.form_color }}; border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+                            <span style="color:#FFFFFF;">Recipient Details</span></h2>
+                </div>
+                <div class="form_label required_label field11"><label>Recipient Name<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field12">
+                    <input class="input_field" size="25" name="recipient_name" value="{{ object.recipient_name }}" >
+                </div>
+                <div class="form_label required_label field13">
+                    <label>Recipient Account Type<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field14">
+                    <input class="input_field" size="25" name="recipient_account_type" value="{{ object.recipient_account_type }}" >
+                </div>
+                <div class="form_label required_label field15 ">
+                    <label>Recipient Account Number<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field16 ">
+                    <input class="input_field" size="25" name="recipient_account_number" value="{{ object.recipient_account_number }}" >
+                </div>
+                <div class="form_label required_label field17">
+                    <label>Recipient Routing Number<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field18 ">
+                    <input class="input_field" size="25" name="recipient_routing_number"  value="{{ object.recipient_routing_number }}" >
+                </div>
+                <div class="form_label required_label field11a"><label>Recipient Street Address<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field12a">
+                    <input class="input_field" size="25" name="recipient_street_address"  value="{{ object.recipient_street_address }}" >
+                </div>
+                <div class="form_label required_label field13a">
+                    <label>Recipient City<span class="asterisk">*</span></label>
+                </div>
+                <div class="form_input field14a">
+                     <input class="input_field" size="25" name="recipient_city"  value="{{ object.recipient_city }}" >
+                </div>
+                <div class="form_label required_label field15a ">
+                    <label>Recipient State<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field16a ">
+                    <select name="recipient_state" class="form-select form-select-sm input_field" required="" id="id_recipient_state">
+                        <option value="{{ object.recipient_state }}" style="font-weight: bold"> Select State</option>
+                        {% for option in form.fields.recipient_state.choices %}
+                          {% if option.0 != object.recipient_state %}
+                            <option value="{{ option.0 }}" >{{ option.1 }}</option>
+                          {% else %}
+                            <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                </div>
+                <div class="form_label required_label field17a">
+                    <label>Recipient Zip Code<span class="asterisk ">*</span></label>
+                </div>
+                <div class="form_input field18a">
+                     <input class="input_field" size="25" name="recipient_zipcode" value="{{ object.recipient_zipcode }}" >
+                </div>
+
+                   <!-- Receiving Bank Section -->
+                   <div class="row_header row_data field19">
+                    <input type="hidden" value="">
+                    <h2 style="background: {{ cunion.form_color }}; border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+                    <span style="color:#FFFFFF;">Intermediary Institution</span></h2>
+                </div>
+                <div class="form_label required_label field20"><label>Receiving Bank Name</label>
+                </div>
+                <div class="form_input field21">
+                    <input class="input_field" size="25" name="receiving_bank_name"  value="{{ object.receiving_bank_name }}" >
+                   
+                </div>
+                <div class="form_label required_label field22">
+                    <label>Receiving Street Address</label>
+                </div>
+                <div class="form_input field23">
+                    <input class="input_field" size="25" name="receiving_street_address"  value="{{ object.receiving_street_address }}" >
+                </div>
+
+                
+                <div class="form_label required_label field24 ">
+                    <label>Receiving Bank State</label>
+                </div>
+                <div class="form_input field25">
+                    <select name="receiving_bank_state" class="form-select form-select-sm input_field" required="" id="id_receiving_bank_state">
+                        <option value="{{ object.receiving_bank_state }}" style="font-weight: bold"> Select State</option>
+                        {% for option in form.fields.receiving_bank_state.choices %}
+                          {% if option.0 != object.receiving_bank_state and option.0 != 'None' %}
+                            <option value="{{ option.0 }}" >{{ option.1 }}</option>
+                          {%  elif option.0 == object.receiving_bank_state and option.0 != 'None' %}
+                            <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+                </div>
+
+                <div class="form_label required_label field26a">
+                    <label>Receiving Bank City</label>
+                </div>
+                <div class="form_input  field27a">
+                    <input class="input_field" size="25" name="receiving_bank_city"  value="{{ object.receiving_bank_city }}" >
+                 </div>
+
+                <div class="form_label required_label field26b">
+                    <label>Receiving Bank Zip Code</label>
+                </div>
+                <div class="form_input  field27b">
+                    <input class="input_field" size="25" name="receiving_bank_zipcode"  value="{{ object.receiving_bank_zipcode }}" >
+                 </div>
+
+                     <!-- Intermediary Section -->
+                     <div class="row_header row_data field28">
+                        <input type="hidden" value="">
+                        <h2 style="background: {{ cunion.form_color }}; border: 1px solid rgb(204, 204, 204); padding: 5px 10px;">
+                            <span style="color:#FFFFFF;">Further Credit To</span></h2>
+                    </div>
+                    <span id="hidden" style="display:none;">Require</span>
+                    <div class="form_label required_label field29">
+                        <label>Intermediary Bank Name <span class="ibank">*</span> </label>
+                         <span  for="{{ form.intermediary_bank_name.id_for_label }}"> </span>
+                        
+                    </div>
+                    <div class="form_input field30">
+                        <input class="input_field" size="25" name="intermediary_bank_name"  value="{{ object.intermediary_bank_name }}" >
+                    </div>
+    
+                    <div class="form_label required_label field31">
+                        <label>Intermediary Bank Street Address <span class="ibank">*</span></label>
+                    </div>
+                    <div class="form_input field32">
+                        <input class="input_field" size="25" name="intermediary_bank_st_adress"  value="{{ object.intermediary_bank_st_adress }}" >
+                    </div>
+                    <div id="ib_state_container2" class="form_label required_label field33 ">
+                        <label>Intermediary Bank State</label>
+                    </div>
+                    <div class="form_input required_label field34">
+                        <select name="intermediary_bank_state" class="form-select form-select-sm input_field" required="" id="id_intermediary_bank_state">
+                            <option value="{{ object.intermediary_bank_state }}" style="font-weight: bold"> Select State</option>
+                            {% for option in form.fields.intermediary_bank_state.choices %}
+                              {% if option.0 != object.intermediary_bank_state and option.0 != 'None' %}
+                                <option value="{{ option.0 }}" >{{ option.1 }}</option>
+                              {%  elif option.0 == object.intermediary_bank_state and option.0 != 'None' %}
+                                <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
+                              {% endif %}
+                            {% endfor %}
+                          </select>
+                    </div>
+    
+                    <div class="form_label required_label field34a ">
+                        <label>Bank Zip</label>
+                    </div>
+                    <div class="form_input required_label field34b">
+                        <input class="input_field" size="25" name="intermediary_bank_post_code" value="{{ object.intermediary_bank_post_code }}" >
+                    </div>
+                    
+                    <div class="form_label required_label field35">
+                        <label>Country <span class="ibank">*</span></label>
+                    </div>
+                    <div class="form_input field36" >
+                        <select name="intermediary_bank_country" class="form-select form-select-sm input_field"  id="intermediary_bank_country">
+                            {% if not object.intermediary_bank_country.value %}
+                            <option value="" style="font-weight: bold" selected>Select</option>
+                            {% endif %}
+                            {% for option in form.fields.intermediary_bank_country.choices %}
+                            {% if option.0 != object.intermediary_bank_country and option.0 != 'None'  %}
+                              <option value="{{ option.0 }}" >{{ option.1 }}</option>
+                            {% elif option.0 == object.intermediary_bank_country %}
+                              <option value="{{ option.0 }}" selected>{{ option.1 }}</option>
+                            {% endif %}
+                          {% endfor %}
+                        </select>
+                    </div>
+    
+                    <div class="form_label required_label field37 ">
+                        <label >Routing Number<span class="ibank "> </span></label>
+                    </div>
+                    <div class="form_input field37a">
+                        <input class="input_field" size="25" name="intermediary_routing_number" value="{{ object.intermediary_routing_number }}" >
+                    </div>
+    
+                    <div class="form_label required_label field38">
+                            <label >SWIFT<span class="ibank "> </span></label>
+                    </div>
+                    <div class="form_input field38a">
+                        <input class="input_field" size="25" name="intermediary_bank_swift"  value="{{ object.intermediary_bank_swift }}" >
+                    </div>
+                    <div class="form_label required_label field39">
+                        <label>IBAN<span class="ibank "> </span></label>
+                    </div>
+                    <div class="form_input field40 flatpickr-input ">
+                        <input class="input_field" size="25" name="intermediary_bank_iban"  value="{{ object.intermediary_bank_iban }}" >
+                    </div>
+                <div class="form_label required_label field42">
+                    <div class="form_label required_label">
+                        <label ></label>
+                    </div>
+                    <div class="cbFormFieldCell">
+                        <span class="cbFormData"><a href="https://sanctionssearch.ofac.treas.gov/" target="_blank" class="cbFormDataLink">OFAC Check</a></span>
+                    </div>
+                </div>
+                <div class="form_label required_label field43">
+                    <div class="form_label required_label">
+                        <label for="InsertRecordPurpose_Of_Wire">Purpose Of Wire</label>
+                    </div>
+                    <div class="cbFormFieldCell">
+                        <input class="input_field" size="50" name="purpose_of_wire"  value="{{ object.purpose_of_wire }}" >
+                    </div>
+                </div>
+                <div class="form_label required_label field44">
+                    <div class="form_label cbFormLabel">
+                        <label for="InsertRecordDescription">Description</label>
+                    </div>
+                    <div class="cbFormFieldCell">
+                        <input class="input_field" size="60" name="description"  value="{{ object.description }}" >
+                    </div>
+                </div>
+            </section>
+            <button style="background-color: {{ cunion.buttons_color }};" type="submit" value="submit" class="mx-auto order-0">Submit</button>
+            {% trans "Submit" as the_btn_label %}
+        </div>
+    </form>
+</main>
+<form action="">
+  {% csrf_token %}
+                           <div class="col" >
+                                {{ form.media }}
+                                {{ form.recurrency }}
+                        </div>
+</form>
+{% endblock %}

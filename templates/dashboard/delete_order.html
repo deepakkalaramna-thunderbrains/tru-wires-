@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block index %}
+{% load static %} 
+{% load i18n widget_tweaks %}
+<main>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+
+			<p>Are you sure you want to delete the Order from, {{ order.client.user }} with an amount of {{ order.wire_details.sending_amount}}?</p>
+
+			<form action="{% url 'delete_order' order.pk  %}" method="POST">
+				
+				{% csrf_token %}
+				<a style="background-color: {{ cunion.buttons_color }};" class="btn btn-warning" href="{% url 'dashboard' %}">Cancel</a>
+
+				<input class="btn btn-danger" type="submit" name="Confirm">
+			</form>
+		</div>
+	</div>
+</div>
+</main>
+{% endblock %}

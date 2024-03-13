@@ -1,0 +1,14 @@
+{% load static %}
+<footer style="background-color: {{ cunion.footer_color }};" class="footer mt-auto py-3 bottom no-print" id="landing-page-content">
+  <div class="ml-1 ">
+     {% if cunion %}
+     <span> {{ cunion.phone_number }}</span>
+     {% else %}
+    <span> Support  234-456-8910</span>
+     {% endif %}
+  </div>
+  <div class="container">
+    <span class="text-muted">© 2023 Copyright {{ cunion.name }} Credit Union .</span>
+  </div>
+</footer>
+  

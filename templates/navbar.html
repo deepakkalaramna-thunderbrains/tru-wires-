@@ -1,0 +1,69 @@
+{% load static %}
+<div style="background-color: {{ cunion.header_color }} !important;" class="no-print" id="topheader">
+  <nav class="navbar navbar-expand-md " id="landing-page-content">
+    
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        {% if request.user.is_authenticated %}
+            <ul class="navbar-nav nav mr-auto">
+              {% if request.user.is_staff %}
+             <li class="nav-item ">
+               <a class="nav-link " href="{%url 'dashboard'%}">Dashboard</a>
+             </li>
+              {% else %}
+             <li class="nav-item ">
+               <a class="nav-link " href="{%url 'home'%}">Request Form</a>
+             </li>
+             <li class="">
+               <a class="nav-link " >Hello, {{ request.user}}</a>
+               
+             </li>
+             <li class="nav-itema ">
+                 <a class="nav-link " href="{% url 'template-list'%}">Templates</a>
+             </li>
+             <li class="nav-item ">
+                 <a class="nav-link" href="{% url 'recurrence-list'%}">Recurring Wires</a>
+             </li>
+             {% endif %}
+           </ul>
+          {% endif %}
+      </div>
+
+      <div class="mx-auto order-0">
+          {% if cunion %}
+          <a class="justify-content-center" href="#">
+            {% comment %} <img alt="Robbins Financial-logo" class="justify-content-center" src="{% static 'images/logo.png' %}" style="width: 70%; height: 70%;"> {% endcomment %}
+            <img alt="Robbins Financial-logo" class="justify-content-center no-print" src="{{ cunion.logo.url }}" style="width: 70%; height: 70%;">
+          </a>
+          {% else %}
+            <a class="justify-content-center" href="#">
+              <img alt="TruTreasury-logo" class="justify-content-center" src="" style="width: 70%; height: 70%;">
+            </a>
+        {% endif %}
+      </div>
+        <button style="background-color: {{ cunion.buttons_color }};" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls="dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ms-auto">
+             {% if request.user.wireauthorizationpair_set.all.count > 0 or request.user.client.wireauthorizationpair_set.all.count %}
+             <li class="nav-item">
+               <a class="nav-link"href="{%url 'authorization'%}">Wire Authorization</a>
+            </li>
+             {% endif %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+               <a class="nav-link"href="{%url 'wire_requests'%}">Wire Requests</a>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                    <a class="nav-link" href="{%url 'login'%}" >Login</a>
+                  </li>
+            {% endif %}
+          </ul>
+      </div>
+  </nav>
+</div>

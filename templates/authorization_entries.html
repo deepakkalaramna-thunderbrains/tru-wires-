@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load static %}{% block index %} 
+{% load i18n widget_tweaks %}
+<main id="landing-page-content">
+<div class="container" mb-5>
+      <div class="header_wrap">
+        <div class="num_rows">
+        <div class="tb_search form_label">
+         <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search Records" class="input_field" size="25">
+        </div>
+      </div>
+    <table class="table table-striped table-class" id= "table-id">
+       <thead>
+         <tr style="background-color: {{ cunion.form_color }};"  class="table-sub-heading" >
+          {% if request.user.is_authenticated and  request.user.is_staff %}
+          <th>Username</th>
+          {% endif %}
+           <th>Destination</th>
+           <th>Recipient Name</th>
+           <th>Amount</th>
+           <th>Effective Date</th>
+           <th>Purpose of Wire</th>
+           <th>Created On</th>
+           {% if is_authorizer %}
+           <th>Action</th>
+           {% endif %}
+         </tr>
+       </thead>
+       <tbody>
+             {% for info in order %}
+             <tr>
+              {% if request.user.is_authenticated and  request.user.is_staff %}
+                <td>{{ info.wire_details.user}}</td>
+              {% endif %}
+               <td>
+                 <a class="" href="{% url 'authorization_entry' info.id %}">{{ info.wire_details.destination }}</a>
+               </td>
+               <td>{{ info.wire_details.recipient_name}}</td>
+               <td>{{ info.wire_details.sending_amount}}  {{ info.wire_form.currency}}</td>
+               <td>{{ info.wire_details.effective_date }}</td>
+               <td>{{ info.wire_details.purpose_of_wire }}</td>
+               <td>{{ info.wire_details.created_at }}</td>
+               {% if is_authorizer %}
+               <td>
+                <a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'authorize_wire' info.id %}">Authorize</a>
+                <a class="btn btn-sm btn-danger " href="{% url 'reject_unauthorized_wire' info.id %}"> Reject</a>
+                  </td>
+
+                  {% endif %}
+             </tr>
+             {% endfor %}
+       </tbody>
+     </table>
+</div>
+
+</main>
+{% endblock %}
+

@@ -1,0 +1,80 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block index %} 
+{% load i18n widget_tweaks %}               
+<main>
+    <div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title">REGISTER ACCOUNT</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+
+					<form method="POST" action="">
+                        {% csrf_token %} 
+                        {% if form.errors %}
+                           {% for field in form %}
+                               {% for error in field.errors %} 
+                                  <div class="alert alert-danger">
+                                       <strong>{{ error|escape }}</strong>
+                                  </div>
+                               {% endfor %}
+                           {% endfor %}
+                        {% endif %} 
+                        {% if messages %}
+                            {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if form.errors.email %} <small class="text-danger">{{ err }}</small>{% endif %}
+                        <label for="basic-url" class="form-label">Username</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" for="{{ form.username.id_for_label }}"> <i class="fas fa-user"></i></span>
+							{{ form.username|add_class:"form-control" }}
+						</div>
+                        <label for="basic-url" class="form-label">First Name</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" for="{{ form.first_name.id_for_label }}"> <i class="fas fa-user"></i></span>
+							{{ form.first_name|add_class:"form-control" }}
+						</div>
+                        <label for="basic-url" class="form-label">Last Name</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" for="{{ form.last_name.id_for_label }}"> <i class="fas fa-user"></i></span>
+							{{ form.last_name|add_class:"form-control" }}
+						</div>
+                        <label for="basic-url" class="form-label">Email</label>
+                        <div class="input-group mb-3">
+                            {% if form.errors.email %} <small class="text-danger">{{ err }}</small>{% endif %}
+                            <span class="input-group-text" for="{{ form.email.id_for_label }}"><i class="fas fa-envelope-square"></i></span>
+							{{ form.email|add_class:"form-control" }}
+						</div>
+                        <label for="basic-url" class="form-label"> Password</label>
+                        <div class="input-group mb-2">
+                            {% if form.errors.password1 %} {% endif %}
+                            <span class="input-group-text" for="{{ form.password1.id_for_label }}">  <i class="fas fa-key"></i></span>
+							{{ form.password1|add_class:"form-control" }}
+						</div>
+                        <label for="basic-url" class="form-label">Confirm Password</label>
+                        <div class="input-group mb-2">
+                            
+                            <span class="input-group-text" for="{{ form.password2.id_for_label }}">  <i class="fas fa-key"></i></span>
+							{{ form.password2|add_class:"form-control"  }}
+						</div>
+                       	<div class="d-flex justify-content-center mt-3 login_container">
+				 			<input class="btn login_btn" type="submit" value="Register Account">
+				   		</div>
+
+					</form>
+				</div>
+		
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						<p>Already have an account? </p> <a href="{% url 'login' %}" class="ml-2"> Login</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}
