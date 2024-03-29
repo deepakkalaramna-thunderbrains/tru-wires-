@@ -41,6 +41,8 @@ from django_pgschemas.utils import get_tenant_model,get_domain_model
 def activation_sent_view(request):
     return render(request,'accounts/activation_sent.html')
 
+def registerDoaminUser(request):
+    return('api hitted successfully..')
 
 def activate(request, uidb64, token):
     try:

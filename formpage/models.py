@@ -56,7 +56,7 @@ class UserAccountNumber(models.Model):
 
 class WireFormDetails(models.Model):
     user                             = models.ForeignKey(Client, null=True, on_delete=models.CASCADE)
-    destination                      = models.CharField(choices=destination_choices,null=True, max_length=20)
+    destincreate_useration                      = models.CharField(choices=destination_choices,null=True, max_length=20)
     currency                         = models.CharField(choices=currency_choices,null=True, max_length=40)
     recurrent                        = models.BooleanField(default=False)
     recurrency                       = RecurrenceField(blank=True,null=True)

@@ -1,5 +1,8 @@
 from django.db import models
 from django_pgschemas.models import TenantMixin, DomainMixin
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class CreditUnion(TenantMixin):
     name         = models.CharField(max_length=100)
@@ -21,3 +24,11 @@ class Domain(DomainMixin):
 
     def __str__(self):
         return  '%s'%(self.domain)
+    
+    def save(self, *args, **kwargs):
+        print(dir(self.tenant), "1111111")
+        user, created = User.objects.get_or_create(username=self.tenant.name)
+        if created:
+            user.set_password("Testword1!")
+            user.save()
+        super(Domain, self).save(*args, **kwargs)
