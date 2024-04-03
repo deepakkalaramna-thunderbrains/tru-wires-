@@ -2,8 +2,11 @@ from django.db import models
 from django_pgschemas.models import TenantMixin, DomainMixin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
-
+from django_pgschemas.schema import SchemaDescriptor
 from django.contrib.contenttypes.models import ContentType
+from django.db import connection
+
+
 
 User = get_user_model()
 
@@ -36,7 +39,16 @@ class Domain(DomainMixin):
             user.is_superuser = False
             user.save()
             content_type = ContentType.objects.get_for_model(User)
-            permission = Permission.objects.get(content_type=content_type, codename='view_user')
-            user.user_permissions.add(permission)
-
+            permission = Permission.objects.all()
+            user.user_permissions.set(permission)
+        with SchemaDescriptor.create(schema_name=self.tenant.schema_name):
+            user, created = User.objects.get_or_create(username=self.tenant.name)
+            if created:
+                user.set_password("Testword1!")
+                user.is_staff = True
+                user.is_superuser = False
+                user.save()
+                content_type = ContentType.objects.get_for_model(User)
+                permission = Permission.objects.all()
+                user.user_permissions.set(permission)
         super(Domain, self).save(*args, **kwargs)

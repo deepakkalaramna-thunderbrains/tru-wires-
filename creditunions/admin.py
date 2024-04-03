@@ -9,7 +9,27 @@ class CreditUnionAdmin(admin.ModelAdmin):
                 obj.schema_name = obj.schema_name.lower()
             super().save_model(request, obj, form, change)
 
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            queryset = super().get_queryset(request)
+            return queryset
+        queryset = super().get_queryset(request)
+        current_domain_with_port = request.META.get('HTTP_HOST', '')
+        current_domain = current_domain_with_port.split('.')[0]  
+
+        queryset = queryset.filter(schema_name=current_domain)
+        return queryset
     
+class DomainAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        if request.user.is_superuser:
+            queryset = super().get_queryset(request)
+            return queryset 
+        queryset = super().get_queryset(request)
+        current_domain_with_port = request.META.get('HTTP_HOST', '')
+        current_domain = current_domain_with_port.split(':')[0]  
+        queryset = queryset.filter(domain=current_domain)
+        return queryset
 
 admin.site.register(CreditUnion, CreditUnionAdmin)
-admin.site.register(Domain)
+admin.site.register(Domain, DomainAdmin)
