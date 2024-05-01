@@ -53,6 +53,9 @@
              {% endif %}
             {% if request.user.is_authenticated %}
             <li class="nav-item">
+              <a class="nav-link"href="{%url 'monthly_report'%}">Monthly Report</a>
+           </li>
+            <li class="nav-item">
                <a class="nav-link"href="{%url 'wire_requests'%}">Wire Requests</a>
             </li>
               <li class="nav-item">

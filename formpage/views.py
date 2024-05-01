@@ -35,7 +35,8 @@ from .models  import UserAccountNumber, WireFormDetails,Order,ReccurentOrder,Cli
 from .tokens  import account_activation_token
 from wireform import settings  
 from django_pgschemas.utils import get_tenant_model,get_domain_model
-
+import io
+import xlsxwriter
 
 # Create your views here.
 def activation_sent_view(request):
@@ -303,6 +304,74 @@ def render_entries(request):
     context ={'order':order}
     return render(request, "last_entry.html",context)
 
+
+@login_required(login_url='login') 
+def monthly_report(request):
+    order = Order.objects.filter(
+        wire_details__effective_date__range=('2024-01-01', '2024-01-31'),
+        status='Approved'
+            )
+    context ={'order':order}
+    print(order,)
+
+    return render(request, "monthly_report.html", context)
+
+
+@login_required(login_url='login') 
+def download_monthly_report(request):
+    order = Order.objects.filter(
+        wire_details__effective_date__range=('2024-01-01', '2024-01-31'),
+        status='Approved'
+    )
+    output = io.BytesIO()
+
+    # Create a new Excel workbook
+    workbook = xlsxwriter.Workbook(output)
+    worksheet = workbook.add_worksheet()
+
+    # Write headers
+    headers = [
+        'Sending Business Name', 
+        'Sending Account Number', 
+        'Sending Account Type', 
+        'ID', 
+        'Effective Date', 
+        'Recipient Name', 
+        'Sending Amount', 
+        'Currency', 
+        'Intermediary Bank Country', 
+        'Status'
+    ]
+    for col, header in enumerate(headers):
+        worksheet.write(0, col, header)
+
+    # Write data rows
+    row = 1
+    for order in order:
+        worksheet.write(row, 0, order.wire_details.sending_businessname)
+        worksheet.write(row, 1, order.wire_details.sending_account_number.account_number)
+        worksheet.write(row, 2, order.wire_details.sending_account_type)
+        worksheet.write(row, 3, order.id)
+        worksheet.write(row, 4, order.wire_details.effective_date)
+        worksheet.write(row, 5, order.wire_details.recipient_name)
+        worksheet.write(row, 6, order.wire_details.sending_amount)
+        worksheet.write(row, 7, order.wire_details.currency)
+        worksheet.write(row, 8, order.wire_details.intermediary_bank_country)
+        worksheet.write(row, 9, order.status)
+        row += 1
+
+    # Close the workbook
+    workbook.close()
+
+    # Set up response
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=monthly_report.xlsx'
+
+    # Write the workbook data to the response
+    output.seek(0)
+    response.write(output.getvalue())
+
+    return response
 
 @login_required(login_url='login') 
 def render_authorization_entries(request):

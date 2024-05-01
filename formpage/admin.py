@@ -19,17 +19,17 @@ admin.site.register(WireAuthorization)
 admin.site.register(WireUserAmountLimit)
 
 
-class CustomUserAdmin(UserAdmin):
-    def get_queryset(self, request):
-        # Get the base queryset
-        queryset = super().get_queryset(request)
-        # Filter queryset based on whether the user is staff or not
-        if request.user.is_staff and not request.user.is_superuser:
-            return queryset.filter(id=request.user.id)
-        else:
-            return queryset
+# class CustomUserAdmin(UserAdmin):
+#     def get_queryset(self, request):
+#         # Get the base queryset
+#         queryset = super().get_queryset(request)
+#         # Filter queryset based on whether the user is staff or not
+#         if request.user.is_staff and not request.user.is_superuser:
+#             return queryset.filter(id=request.user.id)
+#         else:
+#             return queryset
         
-admin.site.unregister(User)
+# admin.site.unregister(User)
 
-# Register the CustomUserAdmin
-admin.site.register(User, CustomUserAdmin)
+# # Register the CustomUserAdmin
+# admin.site.register(User, CustomUserAdmin)

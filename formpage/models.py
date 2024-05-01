@@ -95,8 +95,8 @@ class WireFormDetails(models.Model):
     description                      = models.TextField(max_length=100)
     created_at                       = models.DateTimeField(auto_now_add=True,null=True)
 
-    def __str__(self):
-        return f'{self.user} - {self.destination} - {self.effective_date}'
+    # def __str__(self):
+    #     return f'{self.user} - {self.destination} - {self.effective_date}'
     slug = models.SlugField(
         default="", editable=False, max_length=settings.WIRE_TITLE_MAX_LENGTH
     )

@@ -67,6 +67,11 @@ urlpatterns = [
     path('recurrence/<str:pk>/update/', views.update_recurrence, name="update_recurrence"),
     path('jsi18n/recurrence/',JavaScriptCatalog.as_view(packages=['recurrence']),name='javascript-catalog'),
     path('jsi18n.js', JavaScriptCatalog.as_view(packages=['recurrence']), name='jsi18n'), 
+
+
+    path('submit_order/monthly_report/', views.monthly_report, name='monthly_report'),
+    path('submit_order/download_monthly_report/', views.download_monthly_report, name='download_monthly_report'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
