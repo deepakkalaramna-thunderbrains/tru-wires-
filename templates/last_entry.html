@@ -1,14 +1,13 @@
 {% extends "base.html" %} {% load static %}{% block index %} 
 {% load i18n widget_tweaks %}
 <main id="landing-page-content">
-<div class="container" mb-5>
+<div class="mt-5 mb-5 container card">
       <div class="header_wrap">
         <div class="num_rows">
 		
 				<div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
-          <label class="form_label required_label" for="">Number of Rows</label>
+          <label class="form_label required_label" for="">Number of Rows1</label>
 			 		<select class="form-select form-select-sm form_label" name="state" id="maxRows">
-						 
 						 
 						 <option value="10">10</option>
 						 <option value="15">15</option>
@@ -17,11 +16,11 @@
 						 <option value="70">70</option>
 						 <option value="100">100</option>
             <option value="5000">Show ALL Rows</option>
-						</select>
+					</select>
 			 		
 			  	</div>
         </div>
-        <div class="tb_search form_label">
+        <div class="form-group mt-3">
          <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search Records" class="input_field" size="25">
         </div>
       </div>

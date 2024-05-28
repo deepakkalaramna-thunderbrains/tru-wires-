@@ -1,74 +1,67 @@
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 {% block index %}
-{% load static %} 
 {% load i18n widget_tweaks %}
-<main>
-		
-<div class="container">
-      <div class="header_wrap">
-        <div class="num_rows">
-		
-				<div class="form-group"> 
-					<label class="form_label required_label" for="">Number of Rows</label>
-			 		<select class  ="form-select form-select-sm form_label" name="state" id="maxRows">	 
-						 <option value="10">10</option>
-						 <option value="15">15</option>
-						 <option value="20">20</option>
-						 <option value="50">50</option>
-						 <option value="70">70</option>
-						 <option value="100">100</option>
-            <option value="5000">Show ALL Rows</option>
-						</select>
-			 		
-			  	</div>
+<main id="landing-page-content">
+    <div class="mt-5 mb-5 container card">
+
+        <div class="header_wrap">
+            <div class="num_rows">
+                <div class="form-group">
+                    <label class="form_label required_label" for="">Number of Rows</label>
+                    <select class="form-select form-select-sm form_label" name="state" id="maxRows">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="70">70</option>
+                        <option value="100">100</option>
+                        <option value="5000">Show ALL Rows</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search Templates" class="input_field" size="25">
+            </div>
         </div>
-        <div class="tb_search form_label">
-<input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search Templates" class="input_field" size="25">
+
+        <table class="table table-striped table-class" id="table-id">
+            <thead>
+                <tr style="background-color: {{ cunion.form_color }};" class="table-sub-heading">
+                    <th>Date Of Payment</th>
+                    <th>Wire Type</th>
+                    <th>Recipient Name</th>
+                    <th>Amount</th>
+                    <th>Purpose of Wire</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reccurent in reccurency %}
+                <tr>
+                    {{ form.media }}
+                    <td>{{ reccurent.recurrency }}</td>
+                    <td>{{ reccurent.destination }}</td>
+                    <td>{{ reccurent.recipient_name }}</td>
+                    <td>{{ reccurent.sending_amount }}</td>
+                    <td>{{ reccurent.purpose_of_wire }}</td>
+                    <td>
+                        <a style="background-color: {{ cunion.buttons_color }};" class="btn btn-outline-info btn-sm btn-block" href="{% url 'update_recurrence' reccurent.id %}">Update</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'delete_template' reccurent.id %}">Delete</a>
+                        <a style="background-color: {{ cunion.buttons_color }};" class="btn btn-sm btn-outline-info" href="{% url 'submit_template' reccurent.id %}">Submit Template</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Start Pagination -->
+        <div class='pagination-container mb-7'>
+            <nav>
+                <ul class="pagination">
+                </ul>
+            </nav>
         </div>
-      </div>
-<table class="table table-striped table-class" id= "table-id">	
-<thead >
-<tr style="background-color: {{ cunion.form_color }};"  class="table-sub-heading">
-		<th>Date Of Payment</th>
-		<th>Wire Type</th>
-		<th>Recipient Name</th>
-		<th>Amount</th>
-		<th>Purpose of Wire</th>
-		<th></th>
-	</tr>
-  </thead>
-<tbody>
-	{% for reccurent in reccurency %}
-	<tr>
-       {{form.media}}
-		<td class="recurrency">{{ reccurent.recurrency }} </td>
-		<td>{{reccurent.destination}}</td>
-		<td>{{reccurent.recipient_name}}</td>
-		<td>{{reccurent.sending_amount}}</td>
-		<td>{{reccurent.purpose_of_wire}}</td>
-		<td>
-			<a  style="background-color: {{ cunion.buttons_color }};" class="btn btn-outline-info  btn-sm btn-block" href="{% url 'update_recurrence' reccurent.id %}"> Update</a>
-		</td>
-		
-	
-	</tr>
-	
-	{% endfor %}
-  
-    <tbody>
-</table>
-
-  <!--		Start Pagination -->
-			<div class='pagination-container'>
-				<nav>
-				  <ul class="pagination">
-				  </ul>
-				</nav>
-			</div>
-
-
-</div>
-      
+    </div>
 </main>
 {% endblock %}

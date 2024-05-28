@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <footer style="background-color: {{ cunion.footer_color }};" class="footer mt-auto py-3 bottom no-print" id="landing-page-content">
   <div class="ml-1 ">
      {% if cunion %}
@@ -9,6 +9,17 @@
   </div>
   <div class="container">
     <span class="text-muted">© {% now "Y" %} Copyright {{ cunion.name }} Credit Union .</span>
+  </div>
+</footer> {% endcomment %}
+
+<footer style="position: fixed; bottom: 0; width: 100vw; height: 3rem" class="mt-3 bg-body-tertiary text-center text-lg-start">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    <span class="text-muted">© {% now "Y" %} Copyright {{ cunion.name }} Credit Union .</span>
+    {% if cunion %}
+    <a class="text-body">{{cunion.phone_number}}</a>
+    {% else %}
+    <a class="text-body">Support  234-456-8910</a>
+    {% endif %}
   </div>
 </footer>
   

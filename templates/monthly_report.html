@@ -1,17 +1,17 @@
 {% extends "base.html" %} {% load static %}{% block index %} 
 {% load i18n widget_tweaks %}
 <main id="landing-page-content">
-  {% if order %}
+  {% comment %} {% if order and request.user.is_staff %}
     <div class="text-end pe-md-4 pe-3 py-4"><a href="{% url 'download_monthly_report' %}" class="btn btn-primary">Download Report</a>
     </div>
-    {% endif %}
-<div class="container" mb-5>
+  {% endif %} {% endcomment %}
+<div class="mt-5 container card" mb-5>
       <div class="header_wrap">
         <div class="num_rows">
 		
 				<div class="form-group"> 	<!--		Show Numbers Of Rows 		-->
-          <label class="form_label required_label" for="">Number of Rows</label>
-			 		<select class="form-select form-select-sm form_label" name="state" id="maxRows">
+          <label style = "padding: .25rem;" class="form_label required_label" for="">Number of Rows</label>
+			 		<select style = "padding: .25rem;" class="form-select form-select-sm form_label" name="state" id="maxRows">
 						 
 						 
 						 <option value="10">10</option>
@@ -25,9 +25,13 @@
 			 		
 			  	</div>
         </div>
-        <div class="tb_search form_label">
-         <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search Records" class="input_field" size="25">
+        <div style = "display: inline-block; vertical-align: top;" class="tb_search mt-4">
+         <input style = "padding: .5rem;" type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Search Records" class="input_field" size="25">
         </div>
+        {% if order and request.user.is_staff %}
+        <div style = "display: inline-block; vertical-align: top; float: right;" class="text-end pe-md-4 pe-3 py-4"><a href="{% url 'download_monthly_report' %}" class="btn btn-outline-info btn-sm btn-block">Download Report</a>
+        </div>
+        {% endif %}
       </div>
     <table class="table table-striped table-class" id= "table-id">
        <thead>

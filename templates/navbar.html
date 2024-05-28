@@ -1,72 +1,54 @@
 {% load static %}
-<div style="background-color: {{ cunion.header_color }} !important;" class="no-print" id="topheader">
-  <nav class="navbar navbar-expand-md " id="landing-page-content">
-    
-      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        {% if request.user.is_authenticated %}
-            <ul class="navbar-nav nav mr-auto">
-              {% if request.user.is_staff %}
-             <li class="nav-item ">
-               <a class="nav-link " href="{%url 'dashboard'%}">Dashboard</a>
-             </li>
-              {% else %}
-             <li class="nav-item ">
-               <a class="nav-link " href="{%url 'home'%}">Request Form</a>
-             </li>
-             <li class="">
-               <a class="nav-link " >Hello, {{ request.user}}</a>
-               
-             </li>
-             <li class="nav-itema ">
-                 <a class="nav-link " href="{% url 'template-list'%}">Templates</a>
-             </li>
-             <li class="nav-item ">
-                 <a class="nav-link" href="{% url 'recurrence-list'%}">Recurring Wires</a>
-             </li>
-             {% endif %}
-           </ul>
-          {% endif %}
-      </div>
+{% comment %} {% load bootstrap5 %} {% endcomment %}
+{% comment %} {% bootstrap_css %}
+{% bootstrap_javascript %} {% endcomment %}
+{% comment %} {% load django_bootstrap5 %} {% endcomment %}
 
-      <div class="mx-auto order-0">
-          {% if cunion %}
-          <a class="justify-content-center" href="#">
-            {% comment %} <img alt="Robbins Financial-logo" class="justify-content-center" src="{% static 'images/logo.png' %}" style="width: 70%; height: 70%;"> {% endcomment %}
-            <img alt="Robbins Financial-logo" class="justify-content-center no-print" src="{{ cunion.logo.url }}" style="width: 70%; height: 70%;">
-          </a>
-          {% else %}
-            <a class="justify-content-center" href="#">
-              <img alt="TruTreasury-logo" class="justify-content-center" src="" style="width: 70%; height: 70%;">
-            </a>
-        {% endif %}
-      </div>
-        <button style="background-color: {{ cunion.buttons_color }};" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls="dual-collapse2" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         
-      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-          <ul class="navbar-nav ms-auto">
-             {% if request.user.wireauthorizationpair_set.all.count > 0 or request.user.client.wireauthorizationpair_set.all.count %}
-             <li class="nav-item">
-               <a class="nav-link"href="{%url 'authorization'%}">Wire Authorization</a>
-            </li>
-             {% endif %}
-            {% if request.user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link"href="{%url 'monthly_report'%}">Monthly Report</a>
-           </li>
-            <li class="nav-item">
-               <a class="nav-link"href="{%url 'wire_requests'%}">Wire Requests</a>
-            </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{%url 'logout'%}">Logout</a>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                    <a class="nav-link" href="{%url 'login'%}" >Login</a>
-                  </li>
-            {% endif %}
-          </ul>
-      </div>
-  </nav>
-</div>
+<nav style="background-color: rgba(0, 0, 0, 0.05) !important;" class="px-4 navbar navbar-expand-lg navbar-light bg-light">
+  {% if request.user.is_authenticated %}
+  <a class="p-2 navbar-brand" href="#">
+    {% if cunion %}
+      {% comment %} <img alt="Robbins Financial-logo" class="justify-content-center" src="{% static 'images/logo.png' %}" style="width: 70%; height: 70%;"> {% endcomment %}
+      <img alt="Robbins Financial-logo" class="d-inline-block align-top" src="{{ cunion.logo.url }}" style="width: 70%; height: 70%;">
+    {% else %}
+      <img style = "width: 30px; height: 30px;" alt="TruTreasury-logo" class="d-inline-block align-top" src="{% static 'images/logo1.png' %}">
+    {% endif %}
+    TRU WIRES
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if request.user.is_staff %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'monthly_report' %}">Monthly Report<span class="sr-only">(current)</span></a>
+      </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Request Form<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'template-list' %}">Templates<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'recurrence-list' %}">Recurring Wires<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'wire_requests' %}">Wire Requests</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% endif %}
+    </ul>
+    <span style="position: absolute; right: 0;" class="p-2 navbar-text">
+      Hello, {{ request.user }}
+    </span>
+  </div>
+  {% endif %}
+</nav>
+

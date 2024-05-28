@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="card">
-		<main>
+		{% comment %} <main>
 			<div class="container">
 			<div class="d-flex justify-content-center h-100">
 				<div class="user_card">
@@ -50,8 +50,8 @@
 			</div>
 		</div>
 		</div>
-	</main> 
-		{% comment %} <main id = "loginMain">
+	</main> {% endcomment %}
+		<main id = "loginMain">
 			<div class="container">
 		
 			  <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -107,7 +107,7 @@
 							  <button class="btn btn-primary w-100" type="submit">Login</button>
 							</div>
 							<div class="col-12">
-							  <p class="small mb-0">Don't have account? <a href="#">Forgot Password</a></p>
+							  <p class="small mb-0">Don't have account? <a href="{% url 'register' %}">Sign Up</a></p>
 							</div>
 						  </form>
 		
@@ -126,7 +126,7 @@
 			  </section>
 		
 			</div>
-		  </main> {% endcomment %}
+		  </main>
 </body>
 </html>
 

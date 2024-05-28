@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'images/logo1.png' %}" >
 
 
 
@@ -25,10 +26,14 @@
    
 {% include 'navbar.html' with logo=logo  %}
 <!-- Main section -->
+<div style = "padding-bottom: 3rem;" class="main-content">
+
 {% block index %}
 
 
 {%endblock%}
+</div>
+
 <!-- Main section  end-->
 
 {% include 'footer.html' %}

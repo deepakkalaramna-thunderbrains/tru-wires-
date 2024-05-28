@@ -3,9 +3,9 @@
 {% block index %}
 {% load static %} 
 {% load i18n widget_tweaks %}
-<main>
+{% comment %} <main>
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<div class="card card-body">
 
 
@@ -19,5 +19,13 @@
 		</div>
 	</div>
 </div>
-</main>
+</main> {% endcomment %}
+
+<div style = "margin-top: 10vh;" class="container card">
+	<div class="card-body">
+	  <h5 class="card-title">NOT AUTHORIZED</h5>
+	  <p class="card-text">Please logout and try logging in from a different account since you are not authorized to access this page using your account.</p>
+	  <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+	</div>
+  </div>
 {% endblock %}

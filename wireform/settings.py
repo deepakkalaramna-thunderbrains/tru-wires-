@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'creditunions',
     'rest_framework',
     'rest_framework_swagger',
+    "django_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -96,7 +97,7 @@ NEW_CREDITUNION_ADMIN = 'admin1'
 DATABASES = {
     "default": {
         'ENGINE': 'django_pgschemas.postgresql_backend',
-        "NAME": "wireformdb",
+        "NAME": "newdb",
         "USER": "postgres",
         "PASSWORD": "Testword1!",
     }
