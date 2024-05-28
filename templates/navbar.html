@@ -6,7 +6,7 @@
 
 <nav style="background-color: rgba(0, 0, 0, 0.05) !important;" class="px-4 navbar navbar-expand-lg navbar-light bg-light">
   {% if request.user.is_authenticated %}
-  <a class="p-2 navbar-brand" href="#">
+  <a class="navbar-brand" href="#">
     {% if cunion %}
       {% comment %} <img alt="Robbins Financial-logo" class="justify-content-center" src="{% static 'images/logo.png' %}" style="width: 70%; height: 70%;"> {% endcomment %}
       <img alt="Robbins Financial-logo" class="d-inline-block align-top" src="{{ cunion.logo.url }}" style="width: 70%; height: 70%;">
@@ -45,7 +45,7 @@
       </li>
       {% endif %}
     </ul>
-    <span style="position: absolute; right: 0;" class="p-2 navbar-text">
+    <span style="position: absolute; right: 0;" class="px-4 py-2 navbar-text">
       Hello, {{ request.user }}
     </span>
   </div>

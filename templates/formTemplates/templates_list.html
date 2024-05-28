@@ -7,15 +7,15 @@
 <main id="landing-page-content">
 
     <div class="mt-5 mb-5 container card">
-        <div class="container">
+        <div class="mt-3 container" style = "padding-left: 0px">
             <a style="background-color: {{ cunion.buttons_color }};" class="btn btn-outline-info btn-sm btn-block" href="{% url 'create_template' %}">Create Template</a>
         </div>
 
         <div class="header_wrap">
             <div class="num_rows">
                 <div class="form-group">
-                    <label class="form_label required_label" for="">Number of Rows</label>
-                    <select class="form-select form-select-sm form_label" name="state" id="maxRows">
+                    <label style = "padding-left: 0px" class="form_label required_label" for="">Number of Rows</label>
+                    <select class="px-3 py-2 form-select form-select-sm form_label" name="state" id="maxRows">
                         <option value="10">10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>

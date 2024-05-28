@@ -2,23 +2,22 @@
 {% load static %} 
 {% block index %} 
 {% load i18n widget_tweaks %}
-<div class="container-fluid card">
-<ul style="padding: 1rem" class="nav nav-tabs" id="myTab" role="tablist">
+<div style = "padding: 0px;" class="container-fluid card">
+<ul style="margin: 1rem" class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button style="color: #000000;" class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-home" type="button" role="tab" aria-controls="home" aria-selected="true">Sending Details</button>
+    <button style="color: #000000; padding: 1rem;" class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#pills-home" type="button" role="tab" aria-controls="home" aria-selected="true">Sending Details</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button style="color: #000000;" class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Recipient Details</button>
+    <button style="color: #000000; padding: 1rem;" class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Recipient Details</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button style="color: #000000;" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Intermediary Details</button>
+    <button style="color: #000000; padding: 1rem;" class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Intermediary Details</button>
   </li>
 </ul>
-</div>
 <div style="padding: 2rem; padding-top: 0rem;" class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-    <div style="padding: 1rem; padding-left: 0rem;">
-      <span style="color:#000000; font-size: large; font-weight: 500;">Sending Details</span>
+    <div style="padding: 1rem; padding-left: 0rem; padding-top: 0rem;">
+      <b><span style="color:#000000; font-size: large; font-weight: 600;">Sending Details</span></b>
     </div>
     <div style="display: flex" class="form-row">
       <div class="col-md-4 pe-3 mb-3">
@@ -70,7 +69,7 @@
   </div>
   <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
     <div style="padding: 0px;" class="mb-3 row_header row_data field10">
-      <span style="color:#000000; font-size: large; font-weight: 500;">Recipient Details</span>
+      <b><span style="color:#000000; font-size: large; font-weight: 600;">Recipient Details</span></b>
     </div>
     <div style="display: flex" class="form-row">
       <div class="col-md-6 pe-3 mb-3">
@@ -113,7 +112,7 @@
       </div>
     </div>
     <div style="padding: 0px;" class="mb-3 row_header row_data field19">
-      <span style="color:#000000; font-size: large; font-weight: 500;">Intermediary Institution</span>
+      <b><span style="color:#000000; font-size: large; font-weight: 600;">Intermediary Institution</span></b>
     </div>
     <div style="display: flex" class="form-row">
       <div class="col-md-6 pe-3 mb-3">
@@ -144,7 +143,7 @@
   </div>
   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
     <div style="padding: 0px;" class="mb-3 row_header row_data field1">
-      <span style="color:#000000; font-size: large; font-weight: 500;">Further Credit To</span>
+      <b><span style="color:#000000; font-size: large; font-weight: 600;">Further Credit To</span></b>
     </div>
     <div style="display: flex" class="form-row">
       <div class="col-md-4 pe-3 mb-3">
@@ -208,6 +207,7 @@
 <div className="mt-0" style="padding: 2rem; padding-top: 0rem;">
   <button class="btn btn-outline-info btn-sm btn-block" onclick="window.print();return false;">Print</button>
   {% trans "Submit" as the_btn_label %}
+</div>
 </div>
 {% endblock %}
 
